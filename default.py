@@ -988,20 +988,22 @@ elif mode == 'clearstrm':
     returnPrompt = xbmcgui.Dialog().yesno(addon.getLocalizedString(30000), addon.getLocalizedString(30091))
     if returnPrompt:
         import shutil
-        strm_path = addon.getSetting('strm_path')
-        movies_path = addon.getSetting('movies_path')
-        tvshows_path = addon.getSetting('tvshows_path')
-        try:
-            shutil.rmtree(xbmc.translatePath(strm_path))
-        except: pass
 
-        try:
-            shutil.rmtree(xbmc.translatePath(movies_path))
-        except: pass
+        delpath_list = [
+                addon.getSetting('strm_path'),
+                addon.getSetting('movies_path'),
+                addon.getSetting('tvshows_path')
+            ]
 
-        try:
-            shutil.rmtree(xbmc.translatePath(tvshows_path))
-        except: pass
+        for delpath in delpath_list:
+            if delpath != '':
+                try:
+                    for root, dirs, files in os.walk(delpath):
+                        for f in files:
+                            os.unlink(os.path.join(root, f))
+                        for d in dirs:
+                            shutil.rmtree(os.path.join(root, d))
+                except: pass
 
         returnPrompt = xbmcgui.Dialog().yesno(addon.getLocalizedString(30000), addon.getLocalizedString(30092))
         if returnPrompt:
