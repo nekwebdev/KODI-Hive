@@ -983,10 +983,34 @@ elif mode == 'streamurl':
 
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 
+#clear strm files
+elif mode == 'clearstrm':
+    returnPrompt = xbmcgui.Dialog().yesno(addon.getLocalizedString(30000), addon.getLocalizedString(30091))
+    if returnPrompt:
+        import shutil
+        strm_path = addon.getSetting('strm_path')
+        movies_path = addon.getSetting('movies_path')
+        tvshows_path = addon.getSetting('tvshows_path')
+        try:
+            shutil.rmtree(xbmc.translatePath(strm_path))
+        except: pass
 
-if mode == 'options' or mode == 'buildstrm' or mode == 'clearauth':
+        try:
+            shutil.rmtree(xbmc.translatePath(movies_path))
+        except: pass
+
+        try:
+            shutil.rmtree(xbmc.translatePath(tvshows_path))
+        except: pass
+
+        returnPrompt = xbmcgui.Dialog().yesno(addon.getLocalizedString(30000), addon.getLocalizedString(30092))
+        if returnPrompt:
+            xbmc.executebuiltin('CleanLibrary(video)')
+
+if mode == 'options' or mode == 'buildstrm' or mode == 'clearauth' or mode == 'clearstrm':
     addMenu(PLUGIN_URL+'?mode=clearauth','<<'+addon.getLocalizedString(30018)+'>>')
     addMenu(PLUGIN_URL+'?mode=buildstrm','<<'+addon.getLocalizedString(30025)+'>>')
+    addMenu(PLUGIN_URL+'?mode=clearstrm','<<'+addon.getLocalizedString(30090)+'>>')
     addMenu(PLUGIN_URL+'?mode=createsearch','<<Save Search>>')
 
 
