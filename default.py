@@ -775,7 +775,7 @@ elif mode == 'video' or mode == 'audio':
         service
     except NameError:
         xbmcgui.Dialog().ok(addon.getLocalizedString(30000), addon.getLocalizedString(30051), addon.getLocalizedString(30052), addon.getLocalizedString(30053))
-        log(aaddon.getLocalizedString(30050)+ 'hive-login', True)
+        log(addon.getLocalizedString(30050)+ 'hive-login', True)
         xbmcplugin.endOfDirectory(plugin_handle)
 
     playbackType = 0
@@ -887,7 +887,7 @@ elif mode == 'requestencoding':
             service
     except NameError:
             xbmcgui.Dialog().ok(addon.getLocalizedString(30000), addon.getLocalizedString(30051), addon.getLocalizedString(30052), addon.getLocalizedString(30053))
-            log(aaddon.getLocalizedString(30050)+ 'hive-login', True)
+            log(addon.getLocalizedString(30050)+ 'hive-login', True)
             xbmcplugin.endOfDirectory(plugin_handle)
 
     mediaFile = file.file(filename, title, '', 0, '','')
@@ -914,7 +914,7 @@ elif mode == 'photo':
             service
     except NameError:
             xbmcgui.Dialog().ok(addon.getLocalizedString(30000), addon.getLocalizedString(30051), addon.getLocalizedString(30052), addon.getLocalizedString(30053))
-            log(aaddon.getLocalizedString(30050)+ 'hive-login', True)
+            log(addon.getLocalizedString(30050)+ 'hive-login', True)
             xbmcplugin.endOfDirectory(plugin_handle)
 
 
@@ -972,7 +972,7 @@ elif mode == 'streamurl':
             service
     except NameError:
             xbmcgui.Dialog().ok(addon.getLocalizedString(30000), addon.getLocalizedString(30051), addon.getLocalizedString(30052), addon.getLocalizedString(30053))
-            log(aaddon.getLocalizedString(30050)+ 'hive-login', True)
+            log(addon.getLocalizedString(30050)+ 'hive-login', True)
             xbmcplugin.endOfDirectory(plugin_handle)
 
     url = re.sub('---', '&', url)
